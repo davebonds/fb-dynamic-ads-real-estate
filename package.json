@@ -1,0 +1,11 @@
+{
+  "name": "facebook-dynamic-ads-impress-listings",
+  "version": "1.0.0",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-wp-i18n": "^1.0.0",
+    "node-sass": "^4.5.0"
+  }
+}
