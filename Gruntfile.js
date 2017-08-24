@@ -20,15 +20,25 @@ module.exports = function(grunt) {
         }
     },
 
-    watch: {
-      grunt: { files: ['Gruntfile.js'] },
-    }
+     wp_readme_to_markdown: {
+        your_target: {
+          files: {
+            'readme.md': 'README.txt'
+          },
+        },
+      },
+
+    // watch: {
+    //   grunt: { files: ['Gruntfile.js'] },
+    // }
 
   });
 
   grunt.loadNpmTasks('grunt-wp-i18n');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  //grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
 
-  grunt.registerTask('build', ['makepot']);
-  grunt.registerTask('default', ['build','watch']);
+  grunt.registerTask('build', ['makepot', 'wp_readme_to_markdown']);
+  // grunt.registerTask('default', ['build','watch']);
+  grunt.registerTask('default', ['build']);
 };
