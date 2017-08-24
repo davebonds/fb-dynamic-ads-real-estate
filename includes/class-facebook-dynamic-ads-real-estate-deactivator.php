@@ -6,16 +6,14 @@
  *
  * @link       https://github.com/davebonds/
  * @since      1.0.0
- * @package    Facebook_Dynamic_Ads_Impress_Listings
- * @subpackage Facebook_Dynamic_Ads_Impress_Listings/includes
+ * @package    Facebook_Dynamic_Ads_Real_Estate
+ * @subpackage Facebook_Dynamic_Ads_Real_Estate/includes
  * @author     Dave Bonds <db@davebonds.com>
  */
-class Facebook_Dynamic_Ads_Impress_Listings_Deactivator {
+class Facebook_Dynamic_Ads_Real_Estate_Deactivator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Flush rewrite rules on deactivation.
 	 *
 	 * @since    1.0.0
 	 */

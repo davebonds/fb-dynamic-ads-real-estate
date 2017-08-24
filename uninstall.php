@@ -22,7 +22,7 @@
  * @link       https://github.com/davebonds/
  * @since      1.0.0
  *
- * @package    Facebook_Dynamic_Ads_Impress_Listings
+ * @package    Facebook_Dynamic_Ads_Real_Estate
  */
 
 // If uninstall not called from WordPress, then exit.

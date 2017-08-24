@@ -7,12 +7,11 @@
  *
  * @link       https://github.com/davebonds/
  * @since      1.0.0
- * @package    Facebook_Dynamic_Ads_Impress_Listings
- * @subpackage Facebook_Dynamic_Ads_Impress_Listings/includes
+ * @package    Facebook_Dynamic_Ads_Real_Estate
+ * @subpackage Facebook_Dynamic_Ads_Real_Estate/includes
  * @author     Dave Bonds <db@davebonds.com>
  */
-class Facebook_Dynamic_Ads_Impress_Listings_i18n {
-
+class Facebook_Dynamic_Ads_Real_Estate_i18n {
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -22,7 +21,7 @@ class Facebook_Dynamic_Ads_Impress_Listings_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'facebook-dynamic-ads-impress-listings',
+			'facebook-dynamic-ads-real-estate',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

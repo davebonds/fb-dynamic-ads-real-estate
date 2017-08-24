@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @link              https://github.com/davebonds/
  * @since             1.0.0

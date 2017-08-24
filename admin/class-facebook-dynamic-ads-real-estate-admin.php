@@ -7,11 +7,11 @@
  *
  * @link       https://github.com/davebonds/
  * @since      1.0.0
- * @package    Facebook_Dynamic_Ads_Impress_Listings
- * @subpackage Facebook_Dynamic_Ads_Impress_Listings/admin
+ * @package    Facebook_Dynamic_Ads_Real_Estate
+ * @subpackage Facebook_Dynamic_Ads_Real_Estate/admin
  * @author     Dave Bonds <db@davebonds.com>
  */
-class Facebook_Dynamic_Ads_Impress_Listings_Admin {
+class Facebook_Dynamic_Ads_Real_Estate_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -56,7 +56,7 @@ class Facebook_Dynamic_Ads_Impress_Listings_Admin {
 
 	/**
 	 * Require the feed template.
-	 * Checks for existence in theme folder first.
+	 * Allows for custom template in theme folder.
 	 *
 	 * @since   1.0.0
 	 */
