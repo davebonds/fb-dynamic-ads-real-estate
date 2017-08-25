@@ -33,11 +33,14 @@ Eventually.
 
 ## Changelog ##
 
+### 1.1.0 ###
+* Add metabox to listing edit screen to select fields formatted for listing catalog feed (availability, property type, listing type)
+* Add settings to input Facebook account identifiers
+
 ### 1.0 ###
 * Initial release
 
 
 ## Roadmap ##
 
-* Add metabox on listings to choose property details specific to Facebook feed requirements as opposed to interpreting the existing data (i.e. user defined taxonomies/terms for Neighborhood or Property Status/Type/etc.)
-
+* Use FB account identifiers to post to API to create catalogs, build audiences, etc.

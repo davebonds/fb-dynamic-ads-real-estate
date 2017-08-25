@@ -139,6 +139,9 @@ class Facebook_Dynamic_Ads_Real_Estate {
 		$plugin_admin = new Facebook_Dynamic_Ads_Real_Estate_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_admin, 'fb_dynamic_ads_feed' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_meta_box' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'settings_init' );
 
 	}
 

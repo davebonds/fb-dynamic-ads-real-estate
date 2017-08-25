@@ -21,6 +21,12 @@ class Facebook_Dynamic_Ads_Real_Estate_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		if ( ! class_exists( 'WP_Listings' ) ) {
+			deactivate_plugins( __FILE__ );
+			$error_message = __( 'This plugin requires <a href="https://wordpress.org/plugins/wp-listings/" target="_blank">IMPress Listings</a> installed and activated.', 'fb-dare' );
+			die( $error_message );
+		}
+
 		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-facebook-dynamic-ads-real-estate-admin.php';
 		add_feed( 'fb-catalog', array( 'Facebook_Dynamic_Ads_Real_Estate_Admin', 'fb_dynamic_ads_feed_output' ) );
 		flush_rewrite_rules();

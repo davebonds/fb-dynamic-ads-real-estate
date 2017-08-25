@@ -21,7 +21,7 @@ class Facebook_Dynamic_Ads_Real_Estate_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'facebook-dynamic-ads-real-estate',
+			'fb-dare',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
