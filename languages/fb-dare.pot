@@ -2,10 +2,10 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Facebook Dynamic Ads for Real Estate 1.1.0\n"
+"Project-Id-Version: FB Dynamic Ads for Real Estate 1.1.0\n"
 "Report-Msgid-Bugs-To: "
-"https://wordpress.org/support/plugin/facebook-dynamic-ads-real-estate\n"
-"POT-Creation-Date: 2017-08-26 05:58:29+00:00\n"
+"https://wordpress.org/support/plugin/fb-dynamic-ads-real-estate\n"
+"POT-Creation-Date: 2017-08-26 06:20:41+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,150 +25,150 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n1.0.0\n"
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:49
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:49
 msgid "Facebook Pixel ID"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:50
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:50
 msgid "The Facebook Pixel ID"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:54
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:54
 msgid "Facebook API Access Token"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:55
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:55
 msgid "The Facebook API Access Token"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:59
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:59
 msgid "Facebook Application ID"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:60
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:60
 msgid "The Facebook Application ID"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:64
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:64
 msgid "Facebook Ad Account ID"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:65
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:65
 msgid "The Facebook Ad Account ID"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:101
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:101
 msgid "Facebook Dynamic Ads"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:157
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:157
 msgid "Facebook Account Settings"
 msgstr ""
 
-#: admin/class-facebook-dynamic-ads-real-estate-admin.php:186
+#: admin/class-fb-dynamic-ads-real-estate-admin.php:186
 msgid "Enter settings specific to your Facebook Ad account."
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:21
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:21
 msgid "For Sale [for_sale]"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:22
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:22
 msgid "For Rent [for_rent]"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:23
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:23
 msgid "Sale Pending [sale_pending]"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:24
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:24
 msgid "Recently Sold [recently_sold]"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:25
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:25
 msgid "Off Market [off_market]"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:26
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:26
 msgid "Available Soon [available_soon]"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:36
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:36
 msgid "Apartment"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:37
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:37
 msgid "Condo"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:38
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:38
 msgid "House"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:39
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:39
 msgid "Land"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:40
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:40
 msgid "Manufactured"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:41
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:41
 msgid "Townhouse"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:51
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:51
 msgid "For Rent by Agent"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:52
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:52
 msgid "For Rent by Owner"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:53
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:53
 msgid "For Sale by Agent"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:54
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:54
 msgid "For Sale by Owner"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:55
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:55
 msgid "Foreclosed"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:56
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:56
 msgid "New Construction"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:57
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:57
 msgid "New Listings"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:62
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:62
 msgid ""
 "Use these fields to select values formatted specifically for <A "
 "href=\"https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-"
 "real-estate/catalog\" target=\"_blank\">Listing Catalogs</a>"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:66
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:66
 msgid "Select an <code>availability</code> value"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:74
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:74
 msgid "Select a <code>property_type</code> value"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:82
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:82
 msgid "Select a <code>listing_type</code> value"
 msgstr ""
 
-#: admin/partials/facebook-dynamic-ads-listing-post-metabox.php:89
+#: admin/partials/fb-dynamic-ads-listing-post-metabox.php:89
 msgid "Denotes required field"
 msgstr ""
 
-#: includes/class-facebook-dynamic-ads-real-estate-activator.php:26
+#: includes/class-fb-dynamic-ads-real-estate-activator.php:26
 msgid ""
 "This plugin requires <a href=\"https://wordpress.org/plugins/wp-listings/\" "
 "target=\"_blank\">IMPress Listings</a> installed and activated."
@@ -179,16 +179,16 @@ msgid "Dynamic Ads for Real Estate Listing Catalog"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Facebook Dynamic Ads for Real Estate"
+msgid "FB Dynamic Ads for Real Estate"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/davebonds/facebook-dynamic-ads-real-estate"
+msgid "https://github.com/davebonds/fb-dynamic-ads-real-estate"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Adds XML feed formatted for Facebook Dynamic Ads for Real Estate to IMPress "
+"Adds XML feed formatted for FB Dynamic Ads for Real Estate to IMPress "
 "Listings."
 msgstr ""
 

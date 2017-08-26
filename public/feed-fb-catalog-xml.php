@@ -1,18 +1,18 @@
 <?php
 /**
- * Template for XML Catalog formatted for Facebook Dynamic Ads for Real Estate
+ * Template for XML Catalog formatted for FB Dynamic Ads for Real Estate
  * Required fields and documentation at https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog
  * 
  * @link       https://github.com/davebonds/
  * @since      1.0.0
- * @package    Facebook_Dynamic_Ads_Real_Estate
- * @subpackage Facebook_Dynamic_Ads_Real_Estate/public
+ * @package    FB_Dynamic_Ads_Real_Estate
+ * @subpackage FB_Dynamic_Ads_Real_Estate/public
  * @author     Dave Bonds <db@davebonds.com>
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Instantiate helper class.
-$helpers = new Facebook_Dynamic_Ads_Real_Estate_Helpers();
+$helpers = new FB_Dynamic_Ads_Real_Estate_Helpers();
 
 // Get IMPress Listings settings.
 $wpl_options = get_option( 'plugin_wp_listings_settings' );

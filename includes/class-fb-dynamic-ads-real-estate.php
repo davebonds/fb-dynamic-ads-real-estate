@@ -10,11 +10,11 @@
  *
  * @link       https://github.com/davebonds/
  * @since      1.0.0
- * @package    Facebook_Dynamic_Ads_Real_Estate
- * @subpackage Facebook_Dynamic_Ads_Real_Estate/includes
+ * @package    FB_Dynamic_Ads_Real_Estate
+ * @subpackage FB_Dynamic_Ads_Real_Estate/includes
  * @author     Dave Bonds <db@davebonds.com>
  */
-class Facebook_Dynamic_Ads_Real_Estate {
+class FB_Dynamic_Ads_Real_Estate {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -22,7 +22,7 @@ class Facebook_Dynamic_Ads_Real_Estate {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Facebook_Dynamic_Ads_Real_Estate_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      FB_Dynamic_Ads_Real_Estate_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -55,7 +55,7 @@ class Facebook_Dynamic_Ads_Real_Estate {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'facebook-dynamic-ads-real-estate';
+		$this->plugin_name = 'fb-dynamic-ads-real-estate';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -70,10 +70,10 @@ class Facebook_Dynamic_Ads_Real_Estate {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Facebook_Dynamic_Ads_Real_Estate_Loader. Orchestrates the hooks of the plugin.
-	 * - Facebook_Dynamic_Ads_Real_Estate_i18n. Defines internationalization functionality.
-	 * - Facebook_Dynamic_Ads_Real_Estate_Admin. Defines all hooks for the admin area.
-	 * - Facebook_Dynamic_Ads_Real_Estate_Public. Defines all hooks for the public side of the site.
+	 * - FB_Dynamic_Ads_Real_Estate_Loader. Orchestrates the hooks of the plugin.
+	 * - FB_Dynamic_Ads_Real_Estate_i18n. Defines internationalization functionality.
+	 * - FB_Dynamic_Ads_Real_Estate_Admin. Defines all hooks for the admin area.
+	 * - FB_Dynamic_Ads_Real_Estate_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -87,38 +87,38 @@ class Facebook_Dynamic_Ads_Real_Estate {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-facebook-dynamic-ads-real-estate-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-fb-dynamic-ads-real-estate-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-facebook-dynamic-ads-real-estate-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-fb-dynamic-ads-real-estate-i18n.php';
 
 		/**
 		 * The class containing helper functions used throughout the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-facebook-dynamic-ads-real-estate-helpers.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-fb-dynamic-ads-real-estate-helpers.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-facebook-dynamic-ads-real-estate-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-fb-dynamic-ads-real-estate-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-facebook-dynamic-ads-real-estate-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-fb-dynamic-ads-real-estate-public.php';
 
-		$this->loader = new Facebook_Dynamic_Ads_Real_Estate_Loader();
+		$this->loader = new FB_Dynamic_Ads_Real_Estate_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Facebook_Dynamic_Ads_Real_Estate_i18n class in order to set the domain and to register the hook
+	 * Uses the FB_Dynamic_Ads_Real_Estate_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -126,7 +126,7 @@ class Facebook_Dynamic_Ads_Real_Estate {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Facebook_Dynamic_Ads_Real_Estate_i18n();
+		$plugin_i18n = new FB_Dynamic_Ads_Real_Estate_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -141,7 +141,7 @@ class Facebook_Dynamic_Ads_Real_Estate {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Facebook_Dynamic_Ads_Real_Estate_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new FB_Dynamic_Ads_Real_Estate_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_admin, 'fb_dynamic_ads_feed' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_meta_box' );
@@ -159,7 +159,7 @@ class Facebook_Dynamic_Ads_Real_Estate {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Facebook_Dynamic_Ads_Real_Estate_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new FB_Dynamic_Ads_Real_Estate_Public( $this->get_plugin_name(), $this->get_version() );
 
 	}
 
@@ -187,7 +187,7 @@ class Facebook_Dynamic_Ads_Real_Estate {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Facebook_Dynamic_Ads_Real_Estate_Loader    Orchestrates the hooks of the plugin.
+	 * @return    FB_Dynamic_Ads_Real_Estate_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

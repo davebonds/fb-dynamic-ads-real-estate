@@ -6,11 +6,11 @@
  *
  * @link       https://github.com/davebonds/
  * @since      1.0.0
- * @package    Facebook_Dynamic_Ads_Real_Estate
- * @subpackage Facebook_Dynamic_Ads_Real_Estate/includes
+ * @package    FB_Dynamic_Ads_Real_Estate
+ * @subpackage FB_Dynamic_Ads_Real_Estate/includes
  * @author     Dave Bonds <db@davebonds.com>
  */
-class Facebook_Dynamic_Ads_Real_Estate_Deactivator {
+class FB_Dynamic_Ads_Real_Estate_Deactivator {
 
 	/**
 	 * Flush rewrite rules on deactivation.

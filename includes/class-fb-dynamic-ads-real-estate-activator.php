@@ -6,11 +6,11 @@
  *
  * @link       https://github.com/davebonds/
  * @since      1.0.0
- * @package    Facebook_Dynamic_Ads_Real_Estate
- * @subpackage Facebook_Dynamic_Ads_Real_Estate/includes
+ * @package    FB_Dynamic_Ads_Real_Estate
+ * @subpackage FB_Dynamic_Ads_Real_Estate/includes
  * @author     Dave Bonds <db@davebonds.com>
  */
-class Facebook_Dynamic_Ads_Real_Estate_Activator {
+class FB_Dynamic_Ads_Real_Estate_Activator {
 
 	/**
 	 * Add feed and flush rewrite rules.
@@ -27,8 +27,8 @@ class Facebook_Dynamic_Ads_Real_Estate_Activator {
 			die( $error_message );
 		}
 
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-facebook-dynamic-ads-real-estate-admin.php';
-		add_feed( 'fb-catalog', array( 'Facebook_Dynamic_Ads_Real_Estate_Admin', 'fb_dynamic_ads_feed_output' ) );
+		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-fb-dynamic-ads-real-estate-admin.php';
+		add_feed( 'fb-catalog', array( 'FB_Dynamic_Ads_Real_Estate_Admin', 'fb_dynamic_ads_feed_output' ) );
 		flush_rewrite_rules();
 	}
 

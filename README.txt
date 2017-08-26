@@ -1,4 +1,4 @@
-=== Facebook Dynamic Ads for Real Estate ===
+=== FB Dynamic Ads for Real Estate ===
 Contributors: davebonds
 Author link: https://davebonds.com
 Tags: facebook, facebook ads, dynamic listings, real estate, impress listings
@@ -8,19 +8,19 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds XML feed formatted for Facebook Dynamic Ads for Real Estate to the IMPress Listings plugin.
+Adds XML feed formatted for FB Dynamic Ads for Real Estate to the IMPress Listings plugin.
 
 == Description ==
 
-This plugin adds an XML feed for IMPress Listings formatted to standards and requirements for Facebook Dynamic Ads for Real Estate.
+This plugin adds an XML feed for IMPress Listings formatted to standards and requirements for [FB Dynamic Ads for Real Estate](https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/) Listing Catalogs.
 
-Documentation on Facebook Dynamic Ads here: [https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog](https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog)
+Documentation for Facebook Dynamic Ad Listing Catalogs here: [https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog](https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog)
 
-Support for this plugin is handled on [Github](https://github.com/davebonds/facebook-dynamic-ads-real-estate). 
+Support for this plugin is handled on [Github](https://github.com/davebonds/fb-dynamic-ads-real-estate). 
 
 == Installation ==
 
-1. In the 'Plugins' menu in WordPress, search for Facebook Dynamic Ads for Real Estate
+1. In the 'Plugins' menu in WordPress, search for FB Dynamic Ads for Real Estate
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
