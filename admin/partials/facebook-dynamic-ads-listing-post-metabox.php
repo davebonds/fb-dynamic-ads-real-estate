@@ -79,10 +79,10 @@ foreach ( $property_type_values as $property_type => $value ) {
 echo '</select></p>';
 
 // Listing Type.
-echo '<p><label for="fb-listing-listing_type">' . __( 'Select a <code>listing_type</code> value', 'fb-dare' ) . '</label>';
-echo '<select id="fb-listing-listing_type" name="wp_listings[_fb_listing_listing_type]">';
+echo '<p><label for="fb-listing-type">' . __( 'Select a <code>listing_type</code> value', 'fb-dare' ) . '</label>';
+echo '<select id="fb-listing-type" name="wp_listings[_fb_listing_type]">';
 foreach ( $listing_type_values as $listing_type => $value ) {
-	echo '<option value="' . esc_attr( $value ) . '" ' . selected( get_post_meta( $post->ID, '_fb_listing_listing_type', true ), $value, false ) . '">' . esc_attr( $listing_type ) . '</option>';
+	echo '<option value="' . esc_attr( $value ) . '" ' . selected( get_post_meta( $post->ID, '_fb_listing_type', true ), $value, false ) . '">' . esc_attr( $listing_type ) . '</option>';
 }
 echo '</select></p>';
 ?>

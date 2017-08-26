@@ -170,6 +170,7 @@ class Facebook_Dynamic_Ads_Real_Estate_Admin {
 				array(
 					'id'    => $key['id'],
 					'title' => $key['title'],
+					'label_for' => 'fb-dare-settings[' . $key['id'] . ']',
 				)
 			);
 		}
@@ -208,7 +209,6 @@ class Facebook_Dynamic_Ads_Real_Estate_Admin {
 	 */
 	public function settings_field_render( $args ) {
 		$options = get_option( 'fb-dare-settings' ); ?>
-		<label for="fb-dare-settings[<?php echo esc_attr( $args['id'] ); ?>]"><?php echo esc_attr( $args['title'] ); ?></label>
 		<input type="text" name="fb-dare-settings[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php echo esc_html( $options[ $args['id'] ] ); ?>">
 		<?php
 		// TODO: Add Tooltip
