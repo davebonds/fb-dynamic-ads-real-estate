@@ -32,6 +32,15 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	private $version;
 
 	/**
+	 * The wp_options for the plugin.
+	 *
+	 * @since    1.1.0
+	 * @access   private
+	 * @var      array    $options    The plugin options from wp_options.
+	 */
+	private $options;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -42,6 +51,7 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->options = get_option( 'fb-dare-settings' );
 
 		$this->settings = array(
 			'pixel_id' => array(
@@ -107,7 +117,7 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * @since  1.1.0
 	 */
 	public function fb_listing_catalog_metabox() {
-		require( plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/facebook-dynamic-ads-listing-post-metabox.php' );
+		require( plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/fb-dynamic-ads-listing-post-metabox.php' );
 	}
 
 	/**
@@ -120,6 +130,12 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 		add_submenu_page( 'edit.php?post_type=listing', 'Facebook Dynamic Ads', 'FB Dynamic Ads', 'manage_options', 'fb-dare-settings', array( $this, 'settings_page' ) );
 	}
 
+	public function enqueue_scripts() {
+		wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+		wp_enqueue_style( 'jquery-ui-css-cupertino', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css' );
+		wp_enqueue_script( 'jquery-ui-tooltip' );
+	}
+
 	/**
 	 * Render settings page fields and sections.
 	 *
@@ -127,7 +143,24 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 */
 	public function settings_page() {
 		?>
-
+		<script>
+		jQuery( function() {
+			jQuery( '.tooltip' ).tooltip({
+				close: function(event, ui){
+					ui.tooltip.hover(
+						function () {
+							jQuery(this).stop(true).fadeTo(400, 1); 
+						},
+						function () {
+							jQuery(this).fadeOut("400", function(){
+								jQuery(this).remove(); 
+							})
+						}
+					);
+				}
+			});
+		} );
+		</script>
 		<div class="wrap">
 		<form action="options.php" method="post">
 		<?php settings_fields( 'fb-dare-settings' ); ?>
@@ -168,9 +201,10 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 				'fb-dare-settings',
 				'fb_dare_settings_section',
 				array(
-					'id'    => $key['id'],
-					'title' => $key['title'],
+					'id'        => $key['id'],
+					'title'     => $key['title'],
 					'label_for' => 'fb-dare-settings[' . $key['id'] . ']',
+					'tooltip'   => $key['tooltip'],
 				)
 			);
 		}
@@ -208,9 +242,10 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * @return void
 	 */
 	public function settings_field_render( $args ) {
-		$options = get_option( 'fb-dare-settings' ); ?>
-		<input type="text" name="fb-dare-settings[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php echo esc_html( $options[ $args['id'] ] ); ?>">
+		?>
+		<input type="text" name="fb-dare-settings[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php echo esc_html( $this->options[ $args['id'] ] ); ?>">
 		<?php
+		echo '<span class="tooltip" title="' . esc_attr( $args['tooltip'] ) . '"><i class="fa fa-question-circle"></i></span>';
 		// TODO: Add Tooltip
 	}
 
