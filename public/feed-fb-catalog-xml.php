@@ -65,7 +65,7 @@ while ( have_posts() ) : the_post();
 		<home_listing_id><?php echo esc_html( get_post_meta( $post_id, '_listing_mls', true ) ); ?></home_listing_id>
 		<name><?php the_title(); ?></name>
 		<availability><?php echo esc_html( get_post_meta( $post_id, '_fb_listing_availability', true ) ); ?></availability>
-		<description><?php echo substr( get_the_content(), 0, 140 ); ?></description>
+		<description><?php echo apply_filters( 'fb_dare_feed_description', wp_trim_words( strip_shortcodes( get_the_content() ), 55, '...' ), $post_id ); ?></description>
 		<address format="simple">
 			<component name="addr1"><?php echo esc_html( get_post_meta( $post_id, '_listing_address', true ) ); ?></component>
 			<component name="city"><?php echo esc_html( get_post_meta( $post_id, '_listing_city', true ) ); ?></component>

@@ -1,14 +1,14 @@
 <?php
 /**
  * @link              https://github.com/davebonds/
- * @since             1.2.0
+ * @since             1.2.1
  * @package           FB_Dynamic_Ads_Real_Estate
  *
  * @wordpress-plugin
  * Plugin Name:       FB Dynamic Ads for Real Estate
  * Plugin URI:        https://github.com/davebonds/fb-dynamic-ads-real-estate
  * Description:       Adds XML feed formatted for FB Dynamic Ads for Real Estate to IMPress Listings.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            Dave Bonds
  * Author URI:        https://github.com/davebonds/
  * License:           GPL-2.0+

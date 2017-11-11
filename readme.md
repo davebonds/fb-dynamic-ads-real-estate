@@ -5,7 +5,7 @@
 **Requires at least:** 3.5  
 **Tested up to:** 4.9  
 **Requires PHP:** 5.6  
-**Stable tag:** 1.2.0  
+**Stable tag:** 1.2.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -13,12 +13,12 @@ Adds XML feed formatted for FB Dynamic Ads for Real Estate to the IMPress Listin
 
 ## Description ##
 
-*New!* Facebook pixel code is automatically added for you, just enter your pixel ID!
-*New!* Pixel events are tracked when a search is performed or listing is viewed.
+**New!** Facebook pixel code is automatically added for you, just enter your pixel ID!
+**New!** Pixel events are tracked when a search is performed or listing is viewed.
 
 This plugin adds an XML feed for [IMPress Listings](https://wordpress.org/plugins/wp-listings/) formatted to standards and requirements for [FB Dynamic Ads for Real Estate](https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/) Listing Catalogs.
 
-Documentation for Facebook Dynamic Ad Listing Catalogs here: [https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog](https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog)
+For specific information on setting up real estate listing catalogs, view the [Documentation for Facebook Dynamic Ad Listing Catalogs](https://developers.facebook.com/docs/marketing-api/dynamic-ads-for-real-estate/catalog).
 
 Support for this plugin is handled on [Github](https://github.com/davebonds/fb-dynamic-ads-real-estate). 
 
@@ -64,19 +64,23 @@ Not likely unless there is an overwhelming interest to do so.
 
 ## Changelog ##
 
+### 1.2.1 ###
+* Fix: Replaced `get_the_excerpt` description element in feed with trimmed `get_the_content` due to FB parsing issues with HTML entities.
+* New: Added `fb_dare_feed_description` filter for feed description element.
+
 ### 1.2.0 ###
-* New: Added Facebook pixel code.
-* New: Will now output pixel events for viewing a listing `ViewContent` and search for listings `Search`.
+* New: Adds Facebook pixel code.
+* New: Will now output pixel events for viewing a listing (`ViewContent` event) and search for listings (`Search` event).
 * New: Also adds standard pixel events for `PageView` and `ViewContent` for other non-listing WordPress content.
 
 ### 1.1.0 ###
-* New: Added metabox to listing edit screen to select fields formatted for listing catalog feed (availability, property type, listing type)
-* New: Added availability, property type, and listing type fields to XML
-* New: Added `neighborhood` field to XML (uses `locations` default taxonomy)
-* New: Add settings to input Facebook account identifiers
+* New: Added metabox to listing edit screen to select fields formatted for listing catalog feed (availability, property type, listing type).
+* New: Added availability, property type, and listing type fields to XML.
+* New: Added `neighborhood` field to XML (uses `locations` default taxonomy).
+* New: Add settings to input Facebook account identifiers.
 
 ### 1.0 ###
-* Initial release
+* Initial release.
 
 
 ## Roadmap ##
