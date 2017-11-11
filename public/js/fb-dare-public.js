@@ -18,7 +18,6 @@ jQuery(document).ready(function( $ ) {
 
     }();
     
-    console.log(dare_events);
     regularEvents();
 
     /**
