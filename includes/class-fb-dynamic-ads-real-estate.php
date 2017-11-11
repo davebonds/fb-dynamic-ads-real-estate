@@ -162,6 +162,11 @@ class FB_Dynamic_Ads_Real_Estate {
 
 		$plugin_public = new FB_Dynamic_Ads_Real_Estate_Public( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_action( 'wp_head', $plugin_public, 'pixel_init_event', 2 );
+		$this->loader->add_action( 'wp_head', $plugin_public, 'pixel_events', 3 );
+		$this->loader->add_action( 'wp_head', $plugin_public, 'output_pixel_events', 4 );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
 	}
 
 	/**

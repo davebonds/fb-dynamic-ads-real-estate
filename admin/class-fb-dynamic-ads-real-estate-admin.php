@@ -59,21 +59,21 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 				'title'   => __( 'Facebook Pixel ID', 'fb-dare' ),
 				'tooltip' => __( 'The Facebook Pixel ID', 'fb-dare' ),
 			),
-			'access_token' => array(
-				'id'      => 'access_token',
-				'title'   => __( 'Facebook API Access Token', 'fb-dare' ),
-				'tooltip' => __( 'The Facebook API Access Token', 'fb-dare' ),
-			),
-			'application_id' => array(
-				'id'      => 'application_id',
-				'title'   => __( 'Facebook Application ID', 'fb-dare' ),
-				'tooltip' => __( 'The Facebook Application ID', 'fb-dare' ),
-			),
-			'ad_account_id' => array(
-				'id'      => 'ad_account_id',
-				'title'   => __( 'Facebook Ad Account ID', 'fb-dare' ),
-				'tooltip' => __( 'The Facebook Ad Account ID', 'fb-dare' ),
-			),
+			// 'access_token' => array(
+			// 	'id'      => 'access_token',
+			// 	'title'   => __( 'Facebook API Access Token', 'fb-dare' ),
+			// 	'tooltip' => __( 'The Facebook API Access Token', 'fb-dare' ),
+			// ),
+			// 'application_id' => array(
+			// 	'id'      => 'application_id',
+			// 	'title'   => __( 'Facebook Application ID', 'fb-dare' ),
+			// 	'tooltip' => __( 'The Facebook Application ID', 'fb-dare' ),
+			// ),
+			// 'ad_account_id' => array(
+			// 	'id'      => 'ad_account_id',
+			// 	'title'   => __( 'Facebook Ad Account ID', 'fb-dare' ),
+			// 	'tooltip' => __( 'The Facebook Ad Account ID', 'fb-dare' ),
+			// ),
 		);
 
 	}
