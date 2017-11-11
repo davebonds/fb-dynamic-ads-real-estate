@@ -37,10 +37,11 @@ $posts = query_posts( $query_args );
 echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '" ?' . '>' . "\r\n";
 echo '<listings>' . "\r\n";
 echo '<title>' . get_bloginfo( 'name' ) . ' ' . __( 'Dynamic Ads for Real Estate Listing Catalog', 'fb-dare' ) . '</title>' . "\r\n";
-echo '<link rel="self" href="' . get_bloginfo( 'url' ) . '">' . "\r\n";
+echo '<link rel="self" href="' . get_bloginfo( 'url' ) . '" />' . "\r\n";
 
 // The loop.
 while ( have_posts() ) : the_post();
+
 	$post_id = get_the_id();
 
 	// Loop through FB required fields and set invalid to true if any return false.
@@ -64,7 +65,7 @@ while ( have_posts() ) : the_post();
 		<home_listing_id><?php echo esc_html( get_post_meta( $post_id, '_listing_mls', true ) ); ?></home_listing_id>
 		<name><?php the_title(); ?></name>
 		<availability><?php echo esc_html( get_post_meta( $post_id, '_fb_listing_availability', true ) ); ?></availability>
-		<description><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></description>
+		<description><?php echo substr( get_the_content(), 0, 140 ); ?></description>
 		<address format="simple">
 			<component name="addr1"><?php echo esc_html( get_post_meta( $post_id, '_listing_address', true ) ); ?></component>
 			<component name="city"><?php echo esc_html( get_post_meta( $post_id, '_listing_city', true ) ); ?></component>

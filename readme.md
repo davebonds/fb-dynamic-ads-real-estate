@@ -3,7 +3,7 @@
 **Author link:** https://davebonds.com  
 **Tags:** facebook, facebook ads, dynamic listings, real estate, impress listings  
 **Requires at least:** 3.5  
-**Tested up to:** 3.9  
+**Tested up to:** 4.9  
 **Requires PHP:** 5.6  
 **Stable tag:** 1.2.0  
 **License:** GPLv2 or later  
