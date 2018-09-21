@@ -44,36 +44,31 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param    string $plugin_name The name of this plugin.
+	 * @param    string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
-		$this->options = get_option( 'fb-dare-settings' );
+		$this->version     = $version;
+		$this->options     = get_option( 'fb-dare-settings' );
 
 		$this->settings = array(
-			'pixel_id' => array(
+			'pixel_id'          => array(
 				'id'      => 'pixel_id',
 				'title'   => __( 'Facebook Pixel ID', 'fb-dare' ),
 				'tooltip' => __( 'The Facebook Pixel ID', 'fb-dare' ),
 			),
-			// 'access_token' => array(
-			// 	'id'      => 'access_token',
-			// 	'title'   => __( 'Facebook API Access Token', 'fb-dare' ),
-			// 	'tooltip' => __( 'The Facebook API Access Token', 'fb-dare' ),
-			// ),
-			// 'application_id' => array(
-			// 	'id'      => 'application_id',
-			// 	'title'   => __( 'Facebook Application ID', 'fb-dare' ),
-			// 	'tooltip' => __( 'The Facebook Application ID', 'fb-dare' ),
-			// ),
-			// 'ad_account_id' => array(
-			// 	'id'      => 'ad_account_id',
-			// 	'title'   => __( 'Facebook Ad Account ID', 'fb-dare' ),
-			// 	'tooltip' => __( 'The Facebook Ad Account ID', 'fb-dare' ),
-			// ),
+			'initiate_checkout' => array(
+				'id'      => 'initiate_checkout',
+				'title'   => __( 'InitiateCheckout Event Selector', 'fb-dare' ),
+				'tooltip' => __( 'Enter the selector(s), comma separated, of the element(s) for when a user "favorites" or saves a property. i.e. a save property button or share button.', 'fb-dare' ),
+			),
+			'purchase'          => array(
+				'id'      => 'purchase',
+				'title'   => __( 'Purchase Event Selector', 'fb-dare' ),
+				'tooltip' => __( 'Enter the selector(s), comma separated, of the element(s) for when a user contacts an agent about a property. i.e. a form submit button.', 'fb-dare' ),
+			),
 		);
 
 	}
@@ -99,7 +94,7 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 		} else {
 			$template = plugin_dir_path( dirname( __FILE__ ) ) . '/public/feed-fb-catalog-xml.php';
 		}
-		require( $template );
+		require $template;
 	}
 
 	/**
@@ -117,19 +112,23 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * @since  1.1.0
 	 */
 	public function fb_listing_catalog_metabox() {
-		require( plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/fb-dynamic-ads-listing-post-metabox.php' );
+		require plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/fb-dynamic-ads-listing-post-metabox.php';
 	}
 
 	/**
 	 * Register submenu page.
 	 *
 	 * @since  1.1.0
-	 * @return void
 	 */
 	public function admin_menu() {
 		add_submenu_page( 'edit.php?post_type=listing', 'Facebook Dynamic Ads', 'FB Dynamic Ads', 'manage_options', 'fb-dare-settings', array( $this, 'settings_page' ) );
 	}
 
+	/**
+	 * Enqueue admin scripts.
+	 *
+	 * @since  1.1.0
+	 */
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 		wp_enqueue_style( 'jquery-ui-css-cupertino', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css' );
@@ -174,7 +173,6 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * Register plugin settings and add settings fields.
 	 *
 	 * @since  1.1.0
-	 * @return  void
 	 */
 	public function settings_init() {
 		register_setting(
@@ -214,10 +212,9 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * Callback for settings section. Contains description.
 	 *
 	 * @since  1.1.0
-	 * @return void
 	 */
 	public function settings_section_callback() {
-		_e( 'Enter settings specific to your Facebook Ad account.', 'fb-dare' );
+		esc_html_e( 'Enter settings specific to your Facebook Ad account.', 'fb-dare' );
 	}
 
 	/**
@@ -228,25 +225,50 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * @return array            Sanitized form data.
 	 */
 	public function sanitize( $post_data ) {
-		$post_data['pixel_id']       = sanitize_text_field( $post_data['pixel_id'] );
-		$post_data['access_token']   = sanitize_text_field( $post_data['access_token'] );
-		$post_data['application_id'] = sanitize_text_field( $post_data['application_id'] );
-		$post_data['ad_account_id']  = sanitize_text_field( $post_data['ad_account_id'] );
+		$post_data['pixel_id']          = sanitize_text_field( $post_data['pixel_id'] );
+		$post_data['initiate_checkout'] = sanitize_text_field( $post_data['initiate_checkout'] );
+		$post_data['purchase']          = sanitize_text_field( $post_data['purchase'] );
 		return $post_data;
 	}
 
 	/**
 	 * Render the setting fields.
 	 *
+	 * @param  array $args The settings field args.
 	 * @since  1.1.0
-	 * @return void
 	 */
 	public function settings_field_render( $args ) {
 		?>
 		<input type="text" name="fb-dare-settings[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php echo esc_html( $this->options[ $args['id'] ] ); ?>">
 		<?php
 		echo '<span class="tooltip" title="' . esc_attr( $args['tooltip'] ) . '"><i class="fa fa-question-circle"></i></span>';
-		// TODO: Add Tooltip
+	}
+
+	/**
+	 * Save custom meta box data
+	 *
+	 * @param int $post_id The post ID.
+	 * @since 1.3.0
+	 * @return void
+	 */
+	public function save_property_meta( $post_id ) {
+		$post_type = get_post_type( $post_id );
+		if ( 'listing' !== $post_type ) {
+			return;
+		}
+
+		if ( isset( $_POST['_fb_listing_availability'] ) ) {
+			update_post_meta( $post_id, '_fb_listing_availability', sanitize_text_field( $_POST['_fb_listing_availability'] ) );
+		}
+
+		if ( isset( $_POST['_fb_listing_property_type'] ) ) {
+			update_post_meta( $post_id, '_fb_listing_property_type', sanitize_text_field( $_POST['_fb_listing_property_type'] ) );
+		}
+
+		if ( isset( $_POST['_fb_listing_type'] ) ) {
+			update_post_meta( $post_id, '_fb_listing_type', sanitize_text_field( $_POST['_fb_listing_type'] ) );
+		}
+
 	}
 
 }

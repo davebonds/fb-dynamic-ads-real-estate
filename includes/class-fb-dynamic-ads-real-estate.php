@@ -148,6 +148,7 @@ class FB_Dynamic_Ads_Real_Estate {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_meta_box' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'settings_init' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'save_property_meta' );
 
 	}
 
