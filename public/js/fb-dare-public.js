@@ -3,26 +3,12 @@ jQuery(document).ready(function( $ ) {
     if (typeof dare_events === 'undefined') {
         return;
     }
-
-    // load FB pixel
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.agent='dvwpfbdare';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
-    /**
-     * Setup Events Handlers
-     */
-    !function setupEventHandlers() {
-
-    }();
     
     regularEvents();
 
     /**
-     * Process Init, General, Search, Standard (except custom code), WooCommerce (except AJAX AddToCart, Affiliate and
-     * PayPal events. In case if delay param is present - event will be fired after desired timeout.
+     * Process Init, PageView, ViewContent, and Search
+     * In case if delay param is present - event will be fired after desired timeout.
      */
     function regularEvents() {
 
@@ -45,5 +31,33 @@ jQuery(document).ready(function( $ ) {
         }
 
     }
+
+    // Favorite button. Sends InitiateCheckout event.
+    $(FBDARE.initiate_checkout).click(function(e){
+
+        for( var i = 0; i < dare_events.length; i++ ) {
+
+            var eventData = dare_events[i];
+            //console.log(eventData);
+            if( eventData.name == 'ViewContent' ) {
+                fbq( 'track', 'InitiateCheckout', eventData.params );
+            }
+        }
+
+    });
+
+    // Property contact form button. Sends Purchase event.
+    $(FBDARE.purchase).click(function(e){
+
+        for( var i = 0; i < dare_events.length; i++ ) {
+
+            var eventData = dare_events[i];
+            //console.log(eventData);
+            if( eventData.name == 'ViewContent' ) {
+                fbq( 'track', 'Purchase', eventData.params );
+            }
+        }
+
+    });
 
 });

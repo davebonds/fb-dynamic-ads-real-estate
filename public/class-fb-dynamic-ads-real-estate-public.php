@@ -35,13 +35,13 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param    string    $plugin_name       The name of the plugin.
-	 * @param    string    $version    The version of this plugin.
+	 * @param    string $plugin_name       The name of the plugin.
+	 * @param    string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 		global $fb_dare_events;
 	}
@@ -50,6 +50,7 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
 	 * @since    1.2.0
+	 * @return  Returns early if no pixel ID present.
 	 */
 	public function enqueue_scripts() {
 		/**
@@ -69,12 +70,16 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 		}
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/fb-dare-public.js', array( 'jquery' ), $this->version, false );
+		wp_localize_script( $this->plugin_name, 'FBDARE', array(
+			'initiate_checkout' => $options['initiate_checkout'],
+			'purchase'          => $options['purchase'],
+		) );
 	}
 
 	/**
 	 * Add event with params to global events list.
 	 *
-	 * @param string $event  Event name, eg. "PageView"
+	 * @param string $event  Event name, eg. "PageView".
 	 * @param array  $params Optional. Associated array of event parameters in 'param_name' => 'param_value' format.
 	 * @param int    $delay  Optional. If set, event will be fired with desired delay in seconds.
 	 *
@@ -87,7 +92,7 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 
 		$sanitized = array();
 
-		// sanitize param names and its values
+		// sanitize param names and its values.
 		foreach ( $params as $name => $value ) {
 
 			// skip empty but not zero values.
@@ -158,10 +163,10 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 
 		// If singular listing add ViewContent event with required params.
 		if ( is_singular( array( 'listing' ) ) ) {
-			$event = 'ViewContent';
+			$event  = 'ViewContent';
 			$params = array(
 				'content_type' => 'home_listing',
-				'content_ids'   => array( get_post_meta( $post->ID, '_listing_mls', true ) ),
+				'content_ids'  => array( get_post_meta( $post->ID, '_listing_mls', true ) ),
 			);
 			$this->add_event( $event, $params, 500 );
 		} elseif ( is_post_type_archive( array( 'listing' ) ) || is_tax( $taxonomies ) ) {
@@ -169,7 +174,7 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 			global $wp_query;
 			$ids = wp_list_pluck( $wp_query->posts, 'ID' );
 
-			$event = 'Search';
+			$event  = 'Search';
 			$params = array(
 				'content_type' => 'home_listing',
 				'content_ids'  => $this->get_listing_search_mls_ids( $ids ),
@@ -180,7 +185,7 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 			$this->add_event( $event, $params, 500 );
 		} else {
 			// Add standard ViewContent event with post/page title.
-			$event = 'ViewContent';
+			$event  = 'ViewContent';
 			$params = array(
 				'content_name' => get_the_title( $post->ID ),
 				'content_type' => get_post_type( $post->ID ),
@@ -212,7 +217,7 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 	/**
 	 * Returns an array of listing ID values from _listing_mls post meta key
 	 *
-	 * @param  array $ids         Post IDs
+	 * @param  array $ids         Post IDs.
 	 * @return array $listing_ids MLS Listing IDs
 	 *
 	 * @since  1.2.0
@@ -228,39 +233,39 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 	/**
 	 * Returns the value of _listing_city post meta key for the first post ID in the array.
 	 *
-	 * @param  array  $ids  Post IDs
+	 * @param  array $ids  Post IDs.
 	 * @return string       City
 	 *
 	 * @since  1.2.0
 	 */
 	public function get_listing_search_city( $ids ) {
-		// Return the first one, since only one value is allowed
+		// Return the first one, since only one value is allowed.
 		return get_post_meta( $ids[0], '_listing_city', true );
 	}
 
 	/**
 	 * Returns the value of _listing_state post meta key for the first post ID in the array.
 	 *
-	 * @param  array  $ids  Post IDs
+	 * @param  array $ids  Post IDs.
 	 * @return string       State
 	 *
 	 * @since  1.2.0
 	 */
 	public function get_listing_search_region( $ids ) {
-		// Return the first one, since only one value is allowed
+		// Return the first one, since only one value is allowed.
 		return get_post_meta( $ids[0], '_listing_state', true );
 	}
 
 	/**
 	 * Returns the value of _listing_country post meta key for the first post ID in the array.
 	 *
-	 * @param  array  $ids  Post IDs
+	 * @param  array $ids  Post IDs.
 	 * @return string       Country
 	 *
 	 * @since  1.2.0
 	 */
 	public function get_listing_search_country( $ids ) {
-		// Return the first one, since only one value is allowed
+		// Return the first one, since only one value is allowed.
 		return get_post_meta( $ids[0], '_listing_country', true );
 	}
 }
