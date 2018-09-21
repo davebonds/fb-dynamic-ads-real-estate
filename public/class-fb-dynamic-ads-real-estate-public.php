@@ -42,7 +42,9 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
+		$this->options     = get_option( 'fbdare_options' );
+		$this->post_type   = $this->options['fbdare_post_type'];
+		
 		global $fb_dare_events;
 	}
 
@@ -65,7 +67,7 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 		// Get our options to get the FB Pixel ID and don't load our script if there is none.
 		$options = get_site_option( 'fb-dare-settings' );
 
-		if ( ! $options['pixel_id'] ) {
+		if ( ! $this->options['fbdare_pixel_id'] ) {
 			return;
 		}
 
@@ -121,17 +123,14 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 	public function pixel_init_event() {
 		global $fb_dare_events;
 
-		// Get our options to get the FB Pixel ID.
-		$options = get_site_option( 'fb-dare-settings' );
-
-		if ( ! $options['pixel_id'] ) {
+		if ( ! $this->options['fbdare_pixel_id'] ) {
 			return;
 		}
 
 		// Add the init event.
 		$fb_dare_events[] = array(
 			'type'   => 'init',
-			'name'   => $options['pixel_id'],
+			'name'   => $this->options['fbdare_pixel_id'],
 			'params' => array(),
 		);
 	}
@@ -140,36 +139,31 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 	 * Add standard events to global events list.
 	 *
 	 * @since  1.2.0
+	 * @return  Return early if pixel ID not set.
 	 */
 	public function pixel_events() {
 		global $fb_dare_events;
 		global $post;
 
-		// Get our options to get the FB Pixel ID.
-		$options = get_site_option( 'fb-dare-settings' );
-
-		if ( ! $options['pixel_id'] ) {
+		if ( ! $this->options['fbdare_pixel_id'] ) {
 			return;
 		}
 
 		// Build array of possible listing taxonomies.
-		$taxonomies = array_merge(
-			array( 'locations', 'property-types', 'status', 'features' ),
-			(array) get_option( 'wp_listings_taxonomies' )
-		);
+		$taxonomies = get_object_taxonomies( $this->post_type, 'names' );
 
 		// Add standard PageView event.
 		$this->add_event( 'PageView' );
 
 		// If singular listing add ViewContent event with required params.
-		if ( is_singular( array( 'listing' ) ) ) {
+		if ( is_singular( array( $this->post_type ) ) ) {
 			$event  = 'ViewContent';
 			$params = array(
 				'content_type' => 'home_listing',
 				'content_ids'  => array( get_post_meta( $post->ID, '_listing_mls', true ) ),
 			);
 			$this->add_event( $event, $params, 500 );
-		} elseif ( is_post_type_archive( array( 'listing' ) ) || is_tax( $taxonomies ) ) {
+		} elseif ( is_post_type_archive( array( $this->post_type ) ) || is_tax( $taxonomies ) ) {
 			// Get the post IDs in the current query.
 			global $wp_query;
 			$ids = wp_list_pluck( $wp_query->posts, 'ID' );
@@ -177,7 +171,7 @@ class FB_Dynamic_Ads_Real_Estate_Public {
 			$event  = 'Search';
 			$params = array(
 				'content_type' => 'home_listing',
-				'content_ids'  => $this->get_listing_search_mls_ids( $ids ),
+				'content_ids'  => wp_json_encode( $this->get_listing_search_mls_ids( $ids ) ),
 				'city'         => $this->get_listing_search_city( $ids ),
 				'region'       => $this->get_listing_search_region( $ids ),
 				'country'      => $this->get_listing_search_country( $ids ),
