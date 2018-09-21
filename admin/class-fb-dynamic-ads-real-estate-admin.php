@@ -49,27 +49,12 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 */
 	public function __construct( $plugin_name, $version ) {
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/vendor/webdevstudios/cmb2/init.php';
+
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-		$this->options     = get_option( 'fb-dare-settings' );
-
-		$this->settings = array(
-			'pixel_id'          => array(
-				'id'      => 'pixel_id',
-				'title'   => __( 'Facebook Pixel ID', 'fb-dare' ),
-				'tooltip' => __( 'The Facebook Pixel ID', 'fb-dare' ),
-			),
-			'initiate_checkout' => array(
-				'id'      => 'initiate_checkout',
-				'title'   => __( 'InitiateCheckout Event Selector', 'fb-dare' ),
-				'tooltip' => __( 'Enter the selector(s), comma separated, of the element(s) for when a user "favorites" or saves a property. i.e. a save property button or share button.', 'fb-dare' ),
-			),
-			'purchase'          => array(
-				'id'      => 'purchase',
-				'title'   => __( 'Purchase Event Selector', 'fb-dare' ),
-				'tooltip' => __( 'Enter the selector(s), comma separated, of the element(s) for when a user contacts an agent about a property. i.e. a form submit button.', 'fb-dare' ),
-			),
-		);
+		$this->options     = get_option( 'fbdare_options' );
+		$this->post_type   = $this->options['fbdare_post_type'];
 
 	}
 
@@ -103,7 +88,7 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * @since  1.1.0
 	 */
 	public function register_meta_box() {
-		add_meta_box( 'fb_listing_catalog_metabox', __( 'Facebook Dynamic Ads', 'fb-dare' ), array( $this, 'fb_listing_catalog_metabox' ), 'listing', 'side', 'high' );
+		add_meta_box( 'fb_listing_catalog_metabox', __( 'Facebook Dynamic Ads', 'fb-dare' ), array( $this, 'fb_listing_catalog_metabox' ), $this->post_type, 'side', 'high' );
 	}
 
 	/**
@@ -121,127 +106,52 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 * @since  1.1.0
 	 */
 	public function admin_menu() {
-		add_submenu_page( 'edit.php?post_type=listing', 'Facebook Dynamic Ads', 'FB Dynamic Ads', 'manage_options', 'fb-dare-settings', array( $this, 'settings_page' ) );
-	}
+		$prefix = 'fbdare_';
+		/**
+		 * Registers options page menu item and form.
+		 */
+		$cmb_options = new_cmb2_box( array(
+			'id'           => $prefix . 'options_page',
+			'title'        => esc_html__( 'Facebook Dynamic Ads for Real Estate Options', 'fb-dare' ),
+			'object_types' => array( 'options-page' ),
+			'capability'   => 'manage_options',
+			'option_key'   => $prefix . 'options', // The option key and admin menu page slug.
+			'parent_slug'  => 'options-general.php', // Make options page a submenu item of the tools menu.
+			'menu_title'   => esc_html__( 'Facebook Dynamic Ads', 'fb-dare' ),
+			'display_cb'   => array( $this, 'admin_options_page_content' ),
+		) );
 
-	/**
-	 * Enqueue admin scripts.
-	 *
-	 * @since  1.1.0
-	 */
-	public function enqueue_scripts() {
-		wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
-		wp_enqueue_style( 'jquery-ui-css-cupertino', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css' );
-		wp_enqueue_script( 'jquery-ui-tooltip' );
-	}
+		$cmb_options->add_field( array(
+			'name'    => esc_html__( 'Facebook Pixel ID', 'fb-dare' ),
+			'desc'    => esc_html__( 'Enter your Facebook Pixel ID.', 'fb-dare' ),
+			'default' => '',
+			'id'      => $prefix . 'pixel_id',
+			'type'    => 'text_medium',
+		) );
 
-	/**
-	 * Render settings page fields and sections.
-	 *
-	 * @since  1.1.0
-	 */
-	public function settings_page() {
-		?>
-		<script>
-		jQuery( function() {
-			jQuery( '.tooltip' ).tooltip({
-				close: function(event, ui){
-					ui.tooltip.hover(
-						function () {
-							jQuery(this).stop(true).fadeTo(400, 1); 
-						},
-						function () {
-							jQuery(this).fadeOut("400", function(){
-								jQuery(this).remove(); 
-							})
-						}
-					);
-				}
-			});
-		} );
-		</script>
-		<div class="wrap">
-		<form action="options.php" method="post">
-		<?php settings_fields( 'fb-dare-settings' ); ?>
-		<?php do_settings_sections( 'fb-dare-settings' ); ?>
-		<?php submit_button( 'Save' ); ?>
-		</form></div><!-- end .wrap -->
-		<?php
-	}
+		$cmb_options->add_field( array(
+			'name'    => esc_html__( 'InitiateCheckout Event Selector', 'fb-dare' ),
+			'desc'    => esc_html__( 'Enter the selector(s), comma separated, of the element(s) for when a user "favorites" or saves a property. i.e. a save property button or share button.', 'fb-dare' ),
+			'default' => '',
+			'id'      => $prefix . 'initiate_checkout',
+			'type'    => 'text_medium',
+		) );
 
-	/**
-	 * Register plugin settings and add settings fields.
-	 *
-	 * @since  1.1.0
-	 */
-	public function settings_init() {
-		register_setting(
-			'fb-dare-settings',
-			'fb-dare-settings',
-			array(
-				'sanitize_callback' => array( $this, 'sanitize' ),
-			)
-		);
+		$cmb_options->add_field( array(
+			'name'    => esc_html__( 'Purchase Event Selector', 'fb-dare' ),
+			'desc'    => esc_html__( 'Enter the selector(s), comma separated, of the element(s) for when a user contacts an agent about a property. i.e. a form submit button.', 'fb-dare' ),
+			'default' => '',
+			'id'      => $prefix . 'purchase',
+			'type'    => 'text_medium',
+		) );
 
-		add_settings_section(
-			'fb_dare_settings_section',
-			__( 'Facebook Account Settings', 'fb-dare' ),
-			array( $this, 'settings_section_callback' ),
-			'fb-dare-settings'
-		);
+		$cmb_options->add_field( array(
+			'name'       => esc_html__( 'Select the post type for properties.', 'fb-dare' ),
+			'id'         => $prefix . 'post_type',
+			'type'       => 'select',
+			'options_cb' => array( $this, 'get_post_types' ),
+		) );
 
-		// Loop through settings array and add settings fields.
-		foreach ( $this->settings as $setting => $key ) {
-			add_settings_field(
-				$key['id'],
-				$key['title'],
-				array( $this, 'settings_field_render' ),
-				'fb-dare-settings',
-				'fb_dare_settings_section',
-				array(
-					'id'        => $key['id'],
-					'title'     => $key['title'],
-					'label_for' => 'fb-dare-settings[' . $key['id'] . ']',
-					'tooltip'   => $key['tooltip'],
-				)
-			);
-		}
-	}
-
-	/**
-	 * Callback for settings section. Contains description.
-	 *
-	 * @since  1.1.0
-	 */
-	public function settings_section_callback() {
-		esc_html_e( 'Enter settings specific to your Facebook Ad account.', 'fb-dare' );
-	}
-
-	/**
-	 * Sanitize inputs.
-	 *
-	 * @since  1.1.0
-	 * @param  array $post_data Posted form data.
-	 * @return array            Sanitized form data.
-	 */
-	public function sanitize( $post_data ) {
-		$post_data['pixel_id']          = sanitize_text_field( $post_data['pixel_id'] );
-		$post_data['initiate_checkout'] = sanitize_text_field( $post_data['initiate_checkout'] );
-		$post_data['purchase']          = sanitize_text_field( $post_data['purchase'] );
-		return $post_data;
-	}
-
-	/**
-	 * Render the setting fields.
-	 *
-	 * @param  array $args The settings field args.
-	 * @since  1.1.0
-	 */
-	public function settings_field_render( $args ) {
-		?>
-		<input type="text" name="fb-dare-settings[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php echo esc_html( $this->options[ $args['id'] ] ); ?>">
-		<?php
-		echo '<span class="tooltip" title="' . esc_attr( $args['tooltip'] ) . '"><i class="fa fa-question-circle"></i></span>';
 	}
 
 	/**
@@ -253,7 +163,7 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 	 */
 	public function save_property_meta( $post_id ) {
 		$post_type = get_post_type( $post_id );
-		if ( 'listing' !== $post_type ) {
+		if ( $this->post_type !== $post_type ) {
 			return;
 		}
 
@@ -269,6 +179,23 @@ class FB_Dynamic_Ads_Real_Estate_Admin {
 			update_post_meta( $post_id, '_fb_listing_type', sanitize_text_field( $_POST['_fb_listing_type'] ) );
 		}
 
+	}
+
+	/**
+	 * Returns public post types for selection.
+	 *
+	 * @since  1.3.0
+	 * @return array The registered public post types with key value pair of name => label. Excludes posts, pages, and media.
+	 */
+	public function get_post_types() {
+		$public_post_types = get_post_types( array( 'public' => true ), 'objects' );
+		$post_types        = array();
+		foreach ( $public_post_types as $post_type ) {
+			if ( 'attachment' !== $post_type->name || 'post' !== $post_type->name || 'page' !== $post_type->name ) {
+				$post_types[ $post_type->name ] = $post_type->label;
+			}
+		}
+		return $post_types;
 	}
 
 }
